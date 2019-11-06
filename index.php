@@ -9,7 +9,7 @@
 
         body{
             list-style-type:none; 
-            /* background-image:url(./images/img2.jpg); */
+            /* background-image:url(./images/img.jpg); */
             font-family:"Microsoft JhengHei",Arial, Helvetica, sans-serif;  
             background-size:cover;
             background-repeat:no-repeat;
@@ -43,7 +43,7 @@
             display:block;
             width:350px;
             height:80px;
-            background-color:green;            
+            background-color:#91f88f;            
             font-size:25px;
             font-weight:bold;
             color:white;
@@ -58,13 +58,18 @@
         }
        
         a:hover {
-            background-color: pink;
+            background-color:#edc0f8;
             color:black;
             /* pointer: */
         }
 
-        .footer{
-            /* height:80px; */
+        .footer p{           
+            font-size:25px;
+            font-weight:bold;
+            color:white;
+            text-shadow: 0px 0px 15px #91f88f,  
+            margin:auto;                  
+            text-align:center;
         }
       
     </style>    
@@ -82,7 +87,10 @@
             <div class="btn"><a href="award.php">對獎</a></div>
         </div>
         <hr>
-        <div class="footer"></div>
+        <div class="footer">
+            <p >祝您中獎！</p>
+        </div>
+
     </div>       
   
 </body>

@@ -10,55 +10,203 @@
 
     <?php
 
+        function totAward($year,$period){
+            global $pdo;
+           
+            $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
+            $sql="SELECT `invoice`.`id`,`invoice`.`year`,`invoice`.`period`,`invoice`.`number`,`invoice`.`amount`
+                FROM `invoice`,`prizenum`
+                WHERE `invoice`.`year`=$year &&
+                        `invoice`.`year`=`prizenum`.`year` &&                        
+                        `invoice`.`period`=$period &&
+                        `invoice`.`period`=`prizenum`.`period` && 
+                       (`invoice`.`number`=`prizenum`.`num1` OR
+                        `invoice`.`number`=`prizenum`.`num2` OR
+                        `invoice`.`number`=`prizenum`.`num3` or
+                        `invoice`.`number`=`prizenum`.`num4` or
+                        `invoice`.`number`=`prizenum`.`num5` OR
+                        substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num3`,2,7) OR
+                        substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num4`,2,7) OR
+                        substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num5`,2,7) OR
+                        substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num3`,3,6) OR
+                        substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num4`,3,6) OR
+                        substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num5`,3,6) OR
+                        substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num3`,4,5) OR
+                        substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num4`,4,5) OR
+                        substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num5`,4,5) OR
+                        substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num3`,5,4) OR
+                        substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num4`,5,4) OR
+                        substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num5`,5,4) OR
+                        substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num3`,6,3) OR
+                        substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num4`,6,3) OR
+                        substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num5`,6,3) OR
+                        substring(`invoice`.`number`,6,3)=`prizenum`.`num6` OR
+                        substring(`invoice`.`number`,6,3)=`prizenum`.`num7`)"; 
+
+            // echo $sql;
+            return $pdo->query($sql)->fetchAll(); 
+    }
+
+    $data=totAward(2019, 4);
+
+    if (!empty($data)) {   
+        foreach($data as $v) {              
+            echo "發票號碼:" . $v['number'] . "發票金額:" . $v['amount'] . "<br>";  
+        } 
+        echo "<hr>";            
+    }
+
+
+
+
+
+    if (!empty($data)) {
+            
+        foreach($data as $v) {
+            echo $v['id'] . "<br>";
+            echo $v['year'] . "<br>";
+            echo $v['period'] . "<br>";
+            echo $v['number'] . "<br>";
+            echo $v['amount'] . "<br>";                          
+            echo "<hr>";
+        }        
+    }        
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    if (!empty($data)) {
+            foreach($data as $v) {
+                echo $v['id'] . "<br>";
+                echo $v['year'] . "<br>";
+                echo $v['period'] . "<br>";
+                echo $v['number'] . "<br>";
+                echo $v['amount'] . "<br>";                          
+                echo "<hr>";
+            }        
+        }
+   
+   
+        
+        if(`invoice`.`number`==`prizenum`.`num1`){
+            $count1++;
+        }else if(`invoice`.`number`==`prizenum`.`num2`){
+            $count2++;
+        }else if(`invoice`.`number`==`prizenum`.`num3`||`invoice`.`number`==`prizenum`.`num4`|| `invoice`.`number`==`prizenum`.`num5`){
+            $count3++;
+        }else if(substring(`invoice`.`number`,2,7)==substring(`prizenum`.`num3`,2,7) || substring(`invoice`.`number`,2,7)==substring(`prizenum`.`num4`,2,7) || substring(`invoice`.`number`,2,7)==substring(`prizenum`.`num5`,2,7)){
+            $count4++;
+        }else if(substring(`invoice`.`number`,3,6)==substring(`prizenum`.`num3`,3,6) || substring(`invoice`.`number`,3,6)==substring(`prizenum`.`num4`,3,6) || substring(`invoice`.`number`,3,6)==substring(`prizenum`.`num5`,3,6)){
+            $count5++;
+        }else if(substring(`invoice`.`number`,4,5)==substring(`prizenum`.`num3`,4,5) || substring(`invoice`.`number`,4,5)==substring(`prizenum`.`num4`,4,5) || substring(`invoice`.`number`,4,5)==substring(`prizenum`.`num5`,4,5)){
+            $count6++;   
+        }else if(substring(`invoice`.`number`,6,3)==substring(`prizenum`.`num3`,6,3) || substring(`invoice`.`number`,6,3)==substring(`prizenum`.`num4`,6,3) || substring(`invoice`.`number`,6,3)==substring(`prizenum`.`num5`,6,3)){
+            $count7++;
+        }else if(substring(`invoice`.`number`,6,3)==`prizenum`.`num6` || substring(`invoice`.`number`,6,3)==`prizenum`.`num7`) {
+            $count8++;
+        }
+   
+   
+   
+        
+
+
+    function award($year,$period){
+            
+        global $pdo;
+        $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');
+        $sql="SELECT `invoice`.`id`,`invoice`.`year`,`invoice`.`period`,`invoice`.`number`,`invoice`.`amount`
+            FROM `invoice`,`prizenum`
+            WHERE `invoice`.`year`=$year &&
+                    `invoice`.`year`=`prizenum`.`year` &&                        
+                    `invoice`.`period`=$period &&
+                    `invoice`.`period`=`prizenum`.`period` &&
+                   (`invoice`.`number`=`prizenum`.`num1` OR
+                    `invoice`.`number`=`prizenum`.`num2` OR
+                    `invoice`.`number`=`prizenum`.`num3` or
+                    `invoice`.`number`=`prizenum`.`num4` or
+                    `invoice`.`number`=`prizenum`.`num5` OR
+                    substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num3`,2,7) OR
+                    substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num4`,2,7) OR
+                    substring(`invoice`.`number`,2,7)=substring(`prizenum`.`num5`,2,7) OR
+                    substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num3`,3,6) OR
+                    substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num4`,3,6) OR
+                    substring(`invoice`.`number`,3,6)=substring(`prizenum`.`num5`,3,6) OR
+                    substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num3`,4,5) OR
+                    substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num4`,4,5) OR
+                    substring(`invoice`.`number`,4,5)=substring(`prizenum`.`num5`,4,5) OR
+                    substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num3`,5,4) OR
+                    substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num4`,5,4) OR
+                    substring(`invoice`.`number`,5,4)=substring(`prizenum`.`num5`,5,4) OR
+                    substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num3`,6,3) OR
+                    substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num4`,6,3) OR
+                    substring(`invoice`.`number`,6,3)=substring(`prizenum`.`num5`,6,3) OR
+                    substring(`invoice`.`number`,6,3)=`prizenum`.`num6` OR
+                    substring(`invoice`.`number`,6,3)=`prizenum`.`num7`)"; 
+        echo $sql;
+        return $pdo->query($sql)->fetchAll(); 
+    }
+
+    $data=award(2019, 4);
+
+    if (!empty($data)) {
+        foreach($data as $v) {
+            echo $v['id'] . "<br>";
+            echo $v['year'] . "<br>";
+            echo $v['period'] . "<br>";
+            echo $v['number'] . "<br>";
+            echo $v['amount'] . "<br>";                          
+            echo "<hr>";
+        }        
+    }
+
+
         function insertInv($n) {
 
-        for ($i=0; $i<$n ; $i++) { 
+            for ($i=0; $i<$n ; $i++) { 
 
-            $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root','');               
-            
-            $year=date("Y");
-            $period=rand(1,6);
+                $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root','');               
+                
+                $year=date("Y");
+                $period=rand(1,6);
 
-            $engStr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-            $eng1=$engStr[rand(0,25)];
-            $eng2=$engStr[rand(0,25)];
-            $eng=$eng1.$eng2;
-                            
-            $number=rand(10000000,99999999);
-            $month=$period*2;
-            $date=date("$year-$month-1");     
-            
-            $amount=rand(10,1000);
+                $engStr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+                $eng1=$engStr[rand(0,25)];
+                $eng2=$engStr[rand(0,25)];
+                $eng=$eng1.$eng2;
+                                
+                $number=rand(10000000,99999999);
+                $month=$period*2;
+                $date=date("$year-$month-1");     
+                
+                $amount=rand(10,1000);
 
-            $store=$engStr[rand(0,25)]."store";
+                $store=$engStr[rand(0,25)]."store";
 
-            $note=$engStr[rand(0,25)];
+                $note=$engStr[rand(0,25)];
 
-            $sql="INSERT INTO invoice 
-                    (`year`,`period`,`eng`,`number`,`date`,`amount`,`store`,`note`)
-                    VALUES ('$year','$period','$eng','$number','$date','$amount','$store','$note')";
-            
-            $pdo->exec($sql);                
-        }            
-        echo "已經新增: $n 筆發票！";                        
+                $sql="INSERT INTO invoice 
+                        (`year`,`period`,`eng`,`number`,`date`,`amount`,`store`,`note`)
+                        VALUES ('$year','$period','$eng','$number','$date','$amount','$store','$note')";
+                
+                $pdo->exec($sql);                
+            }            
+            echo "已經新增: $n 筆發票！";                        
         }
 
         insertInv(1000); 
-        
-    ?>
-
-
-  
-    <?php
-        $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root',''); 
-
-        $temp=rand(1,6);
-        $month=$temp*2;
-        $sql="UPDATE `invoice` SET `year`='2019' WHERE `year`='108'";
-        $pdo->exec($sql);
+     
 
     ?>
-
 
 </body>
 </html>

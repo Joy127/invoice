@@ -49,7 +49,7 @@
         input {
             font-size:20px;
             padding:0px;
-            background-color:pink;
+            background-color:#c0eef8;
         }
         
       </style>
@@ -147,6 +147,7 @@
         <hr>
         <!--  -->
         <div class="footer"> 
+            <p><a href="index.php">回首頁</a></p>
         </div> 
 
     </div>    

@@ -48,7 +48,7 @@
         input {
             font-size:20px;
             padding:0px;
-            background-color:pink;
+            background-color:#f3f8c0;
         }
        
       </style>
@@ -100,7 +100,7 @@
                     </tr>                
                     <tr>
                         <td>消費金額</td>
-                        <td><input type="text" name="amount" value="" pattern="[0-9]" placeholder="請輸入金額" required></td>
+                        <td><input type="text" name="amount" value="" placeholder="請輸入金額" required></td>
                     </tr>                
                     <tr>
                         <td>商店名稱</td>
