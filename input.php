@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <link rel="stylesheet" href="style.css">
-    <title>輸入發票</title>
-    <style>
-        
-       
-    </style>
+    <title>發票輸入</title>    
 </head>
 <body>
     <div class="main">
@@ -78,11 +74,23 @@
         <div class="footer">            
         <p>
             <?php
-                if (!empty($_GET['err'])) {
-                    echo "新增發票失敗！";
+                if (empty($_GET['s'])) {
+                    $s=0;
+                    echo "";
                 }else {
-                    echo "新增發票成功！";
-                }
+                    if (($_GET['s'])==1) {
+                        echo "新增發票成功！";
+                    }                    
+                } 
+
+                if (empty($_GET['err'])) {
+                    $err=0;
+                    echo "";
+                }else {
+                    if (($_GET['err'])==1) {
+                        echo "新增發票失敗！";
+                    }                    
+                } 
             ?>
             </p>
         <p><a href="index.php">回首頁</a></p> 

@@ -19,13 +19,13 @@
 
         .k1{
             float:left; 
-            margin-top:-15px;          
+            margin-top:-20px;          
             margin-left:20px;
         }
 
         .k2{
             float:right;
-            margin-top:-15px;
+            margin-top:-20px;
             margin-right:20px;
         }
         
@@ -57,7 +57,7 @@
 <body>    
     <div class="main">
         <div class="header">
-            <h2>發票存摺</h2>
+            <h3>發票存摺</h3>
             <div class="k1">
             <?php
                 $year=$_GET['year'];

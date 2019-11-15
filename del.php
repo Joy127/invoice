@@ -11,7 +11,7 @@
            width:300px;
            text-align:center;
        }
-        #del{
+        .del{
             width:50px;
             height:30px;            
             font-size:20px;
@@ -33,7 +33,7 @@
         
         <div class="content"> 
             <?php
-            echo $id=$_GET['id']; 
+            $id=$_GET['id']; 
             $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root','');            
             $sql="SELECT * FROM `invoice` WHERE `id`='$id'";
             
@@ -81,7 +81,7 @@
                     <tr>                                           
                         <td colspan="2"><input type="hidden" name="id" value="<?=$data['id'];?>">
                         <input type="submit" value="確定">
-                        <button id="del"><a href="choice1.php">取消</a></button>                        
+                        <button class="del"><a href="choice1.php">取消</a></button>                        
                     </td>                                                                
                     </tr>                    
                 </table>        

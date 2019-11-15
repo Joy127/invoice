@@ -5,35 +5,23 @@
     }else {
         $year=$_GET['year'];
         $period=$_GET['period']; 
-        $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
-        $sql="SELECT * FROM `invoice` WHERE `invoice`.`year`=$year && `invoice`.`period`=$period";    
-        if (empty($pdo->query($sql)->fetchAll())) {
-            // echo "<a href='choice2.php'>沒有該期發票！</a>";
-            header("location:choice2.php?err=2");
-        }
+                  
     }
 
     $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
-    $sql="SELECT * FROM `prizenum` WHERE `prizenum`.`year`=$year && `prizenum`.`period`=$period";    
+    $sql="SELECT * FROM `invoice` WHERE `invoice`.`year`=$year && `invoice`.`period`=$period";
     if (empty($pdo->query($sql)->fetchAll())) {
-        echo "<a href='choice2.php'>沒有該期獎號！</a>";
-        header("location:choice2.php?err=3");
+        // echo "<a href='choice2.php'>沒有該期發票！</a>";
+        header("location:choice2.php?err=2");
     }
 
     // $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
-    // $sql="SELECT * FROM `invoice` WHERE `invoice`.`year`=$year && `invoice`.`period`=$period";    
-    // if (empty($pdo->query($sql)->fetchAll())) {
-    //     echo "<a href='choice2.php'>沒有該期發票！</a>";
-    //     header("location:choice2.php?err=2");
-    // }
-
-    // $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
-    // $sql="SELECT * FROM `prizenum` WHERE `prizenum`.`year`=$year && `prizenum`.`period`=$period";    
-    // if (empty($pdo->query($sql)->fetchAll())) {
-    //     echo "<a href='choice2.php'>沒有該期獎號！</a>";
-    //     header("location:choice2.php?err=3");
-    // }
-
+    $sql1="SELECT * FROM `prizenum` WHERE `prizenum`.`year`=$year && `prizenum`.`period`=$period";    
+    if (empty($pdo->query($sql1)->fetchAll())) {
+        echo "<a href='choice2.php'>沒有該期獎號！</a>";
+        header("location:choice2.php?err=3");
+    }
+    
 ?>
 
 <!DOCTYPE html>

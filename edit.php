@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>發票存摺</title>
     <style>
-        #del{
+        .del{
             width:50px;
             height:30px;            
             font-size:20px;
@@ -83,7 +83,7 @@
                 <tr>                                          
                     <td colspan="2"><input type="hidden" name="id" value="<?=$data['id'];?>">
                     <input type="submit" value="更新">
-                    <button id="del"><a href="del.php?id=<?=$data['id']?>">刪除</a></button> 
+                    <button class="del"><a href="del.php?id=<?=$data['id']?>">刪除</a></button> 
                 </td>                                                                
                 </tr>                    
             </table> 
