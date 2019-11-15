@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
- 
 <?php
 
-    function totAward($year,$period){
-        global $pdo;
-        
+    function totAward($year,$period){        
+        global $pdo;        
         $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
         $sql="SELECT `invoice`.`id`,`invoice`.`year`,`invoice`.`period`,`invoice`.`number`,`invoice`.`amount`
               FROM `invoice`,`prizenum`
@@ -44,8 +32,8 @@
                     substring(`invoice`.`number`,6,3)=`prizenum`.`num6` OR
                     substring(`invoice`.`number`,6,3)=`prizenum`.`num7`)"; 
 
-        $row=$pdo->query($sql)->fetch(); 
-
+        $row=$pdo->query($sql)->fetchAll();     
+        
         echo "<table border='1'>";
         echo "<tr>";        
         echo "<th>序號</th>";
@@ -53,21 +41,21 @@
         echo "<th>期數</th>";
         echo "<th>發票號碼</th>";
         echo "<th>發票金額</th>";
-        echo "</tr>";
+        echo "</tr>";        
 
-        while($row=$pdo->query($sql)->fetch()) {
+        foreach($row as $v) {
             echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['year'] . "</td>";
-            echo "<td>" . $row['period'] . "</td>";
-            echo "<td>" . $row['number'] . "</td>";
-            echo "<td>" . $row['amount'] . "</td>";
+            echo "<td>" . $v['id'] . "</td>";
+            echo "<td>" . $v['year'] . "</td>";
+            echo "<td>" . $v['period'] . "</td>";
+            echo "<td>" . $v['number'] . "</td>";
+            echo "<td>" . $v['amount'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
-
     }
 
+    totAward(2019, 4);   
 ?>
 
 </body>

@@ -25,13 +25,12 @@
             VALUES ('$year','$period','$num1','$num2','$num3','$num4','$num5','$num6','$num7')";
         
         if ( $pdo->exec($sql)) {
-            echo "新增 $year 年第 $period 期中獎號碼成功！";
-            header("location:number.php");
+            // echo "新增 $year 年第 $period 期中獎號碼成功！";
+            header("location:number.php?s=1");
         }else {
-            echo "新增 $year 年第 $period 期中獎號碼失敗！";
-            header("location:number.php");
-        }        
-    
+            // echo "新增 $year 年第 $period 期中獎號碼失敗！";
+            header("location:number.php?err=1");
+        } 
     ?>
 
 </body>

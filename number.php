@@ -4,17 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>輸入開獎號碼</title>
 
     <style>
-        body{
-            list-style-type:none;             
-            font-family:"Microsoft JhengHei",Arial, Helvetica, sans-serif;              
-            /* margin:auto;  */
-            background-size:cover;
-            background-repeat:no-repeat;
-        }
-
+        
         .main{  
             display:block;          
             width:550px;
@@ -24,13 +18,8 @@
             border-radius:20px;
             margin:20px auto;
             overflow:auto;
-        }  
+        }          
         
-        h3{
-            color:white;
-            text-align:center;
-        }
-
         table{
             border-collapse:collapse;
             border-spacing:0;
@@ -147,6 +136,27 @@
         <hr>
         <!--  -->
         <div class="footer"> 
+        <p>
+            <?php
+                if (empty($_GET['s'])) {
+                    $s=0;
+                    echo "";
+                }else {
+                    if (($_GET['s'])==1) {
+                        echo "新增獎號成功！";
+                    }
+                }
+                
+                if (empty($_GET['err'])) {
+                    $_GET['err']=0;
+                    echo "";
+                }else {
+                    if (($_GET['err'])==1) {
+                        echo "新增獎號失敗！";
+                    }
+                }
+            ?>
+            </p>
             <p><a href="index.php">回首頁</a></p>
         </div> 
 

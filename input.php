@@ -4,65 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <link rel="stylesheet" href="style.css">
     <title>輸入發票</title>
     <style>
-        body{
-            list-style-type:none;             
-            font-family:"Microsoft JhengHei",Arial, Helvetica, sans-serif;              
-            /* margin:auto;  */
-            background-size:cover;
-            background-repeat:no-repeat;
-        }
-
-        .main{  
-            display:block;          
-            width:400px;
-            height:580px;  
-            box-sizing:border-box;                   
-            background-color:gray;
-            border-radius:20px;
-            margin:50px auto;
-            overflow:auto;
-        }  
         
-        h3{
-            color:white;
-            text-align:center;
-        }
-
-
-        table{
-            border-collapse:collapse;
-            border-spacing:0;
-            margin:auto;
-        }
-        
-        td{            
-            height:20px;
-            border:1px solid #ccc;
-            padding:5px;
-            font-size:15px;
-            text-overflow:ellipsis;
-        }
-
-        input {
-            font-size:20px;
-            padding:0px;
-            background-color:#f3f8c0;
-        }
        
-      </style>
+    </style>
 </head>
 <body>
     <div class="main">
-
         <div class="header">
             <h3>請輸入發票資料</h3>
         </div>        
-        <hr>
-
-        <!-- 手動輸入發票 -->
-        <div class="content">
+        <hr>        
+        
+        <div class="content"> 
             <form action="input_api.php" method="post">    
                 <table>  
                     <tr>
@@ -118,17 +74,18 @@
             </form>
         </div>
         <hr>
-
-        <!-- 呼叫程式取得發票 -->
-        <div class="footer"> 
-            <?php            
-            echo "由系統輸入發票筆數："
-            ?>              
-            <form action="get.php" method="get">
-                <input type="text" name="num" value="" placeholder="請輸入數字" >
-                <input type="submit" value="確定">
-            </form> 
-            <p><a href="index.php">回首頁</a></p>
+       
+        <div class="footer">            
+        <p>
+            <?php
+                if (!empty($_GET['err'])) {
+                    echo "新增發票失敗！";
+                }else {
+                    echo "新增發票成功！";
+                }
+            ?>
+            </p>
+        <p><a href="index.php">回首頁</a></p> 
         </div> 
     </div>
 

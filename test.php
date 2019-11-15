@@ -14,7 +14,7 @@
             global $pdo;
            
             $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense",'root','');            
-            $sql="SELECT `invoice`.`id`,`invoice`.`year`,`invoice`.`period`,`invoice`.`number`,`invoice`.`amount`
+            $sql="SELECT `invoice`.`id`,`invoice`.`year`,`invoice`.`period`,`invoice`.`eng`,`invoice`.`number`,`invoice`.`amount`
                 FROM `invoice`,`prizenum`
                 WHERE `invoice`.`year`=$year &&
                         `invoice`.`year`=`prizenum`.`year` &&                        
@@ -56,32 +56,18 @@
         echo "<hr>";            
     }
 
-
-
-
-
     if (!empty($data)) {
             
         foreach($data as $v) {
             echo $v['id'] . "<br>";
             echo $v['year'] . "<br>";
             echo $v['period'] . "<br>";
+            echo $v['eng'] . "&nbsp;";
             echo $v['number'] . "<br>";
             echo $v['amount'] . "<br>";                          
             echo "<hr>";
         }        
     }        
-
-
-
-
-
-
-
-
-
-
-
 
     
     if (!empty($data)) {
@@ -89,12 +75,12 @@
                 echo $v['id'] . "<br>";
                 echo $v['year'] . "<br>";
                 echo $v['period'] . "<br>";
+                echo $v['eng'] . "<br>";
                 echo $v['number'] . "<br>";
                 echo $v['amount'] . "<br>";                          
                 echo "<hr>";
             }        
         }
-   
    
         
         if(`invoice`.`number`==`prizenum`.`num1`){
@@ -115,10 +101,6 @@
             $count8++;
         }
    
-   
-   
-        
-
 
     function award($year,$period){
             
@@ -168,43 +150,6 @@
             echo "<hr>";
         }        
     }
-
-
-        function insertInv($n) {
-
-            for ($i=0; $i<$n ; $i++) { 
-
-                $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root','');               
-                
-                $year=date("Y");
-                $period=rand(1,6);
-
-                $engStr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-                $eng1=$engStr[rand(0,25)];
-                $eng2=$engStr[rand(0,25)];
-                $eng=$eng1.$eng2;
-                                
-                $number=rand(10000000,99999999);
-                $month=$period*2;
-                $date=date("$year-$month-1");     
-                
-                $amount=rand(10,1000);
-
-                $store=$engStr[rand(0,25)]."store";
-
-                $note=$engStr[rand(0,25)];
-
-                $sql="INSERT INTO invoice 
-                        (`year`,`period`,`eng`,`number`,`date`,`amount`,`store`,`note`)
-                        VALUES ('$year','$period','$eng','$number','$date','$amount','$store','$note')";
-                
-                $pdo->exec($sql);                
-            }            
-            echo "已經新增: $n 筆發票！";                        
-        }
-
-        insertInv(1000); 
-     
 
     ?>
 

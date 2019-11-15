@@ -16,7 +16,7 @@
                 $pdo=new PDO("mysql:host=localhost; charset=utf8; dbname=expense", 'root','');               
                 
                 $year=date("Y");
-                $period=rand(1,6);
+                $period=ceil(rand(1,6));
     
                 $engStr=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
                 $eng1=$engStr[rand(0,25)];
